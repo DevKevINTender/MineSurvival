@@ -78,16 +78,6 @@ public class AudioUnitViewService : IPoolingViewService
         
     }
 
-    public void ActivateServiceFromPool(Transform poolTarget)
-    {
-        if (_audioUnitView == null)
-        {
-            Vector3 spawnPos = poolTarget.position;
-            _audioUnitView = _fabric.Init<AudioUnitView>(spawnPos, poolTarget);
-            _audioUnitView.DeactivateToPool = DeactivateServiceToPool;
-        }
-    }
-
     public void DeactivateServiceToPool()
     {
         _audioUnitView.DeactivateView();
@@ -97,6 +87,16 @@ public class AudioUnitViewService : IPoolingViewService
     public void SetDeactivateAction(Action<IPoolingViewService> action)
     {
         _onDeactivateAction = action;
+    }
+
+    public void ActivateServiceFromPool(Action<IPoolingViewService> action, Transform poolTarget)
+    {
+        if (_audioUnitView == null)
+        {
+            Vector3 spawnPos = poolTarget.position;
+            _audioUnitView = _fabric.Init<AudioUnitView>(spawnPos, poolTarget);
+            _audioUnitView.DeactivateToPool = DeactivateServiceToPool;
+        }
     }
 }
 

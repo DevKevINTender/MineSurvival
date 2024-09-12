@@ -34,7 +34,7 @@ public class SoldierAllyUnitViewService : AllyUnitViewService
         _takeDamage = _soldierAllyUnitView.GetComponentInChildren<AllyTakeDamageComponent>();
         _takeDamage.ActivateComponent<EnemyDealDamageComponent>();
 
-        _bulletPoolViewService = _poolsViewService.GetPool<AllyBuletViewService, AllyBulletView>();
+        _bulletPoolViewService = _poolsViewService.GetPool<AllyBuletViewService>();
 
         _intervalProperty.Value = _shootInterval;
 
@@ -73,7 +73,7 @@ public class SoldierAllyUnitViewService : AllyUnitViewService
 
     public void Shoot()
     {
-        AllyBuletViewService bullet = (AllyBuletViewService)_bulletPoolViewService.GetItem<AllyBulletView>();
+        AllyBuletViewService bullet = (AllyBuletViewService)_bulletPoolViewService.GetItem();
         bullet.ActivateService(_soldierAllyUnitView.transform.position, targetPool.FirstOrDefault().transform.position, 10);
     }
 

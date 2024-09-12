@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3824564269702810471}
   - component: {fileID: 4749361356226343227}
   - component: {fileID: 2475029586558324861}
+  - component: {fileID: -5356651054458846353}
   m_Layer: 0
   m_Name: AllyBullet
   m_TagString: Untagged
@@ -185,5 +186,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e89deabb741b19d458d4fbff5e31d74a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5356651054458846353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978534056416240827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e26893e53f30324fb4b4379dd43c782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
