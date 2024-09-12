@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9db593876931ca4f8f91c483e117f3e, type: 3}
+  m_Name: ItemPoolData
+  m_EditorClassIdentifier: 
+  ItemDatas:
+  - Id: 0
+    Name: 
+    Icon: {fileID: 21300000, guid: b6433fca4a4875d4db03c5e2fa26aec1, type: 3}
+    Grade: {fileID: 21300000, guid: 6ff516b7f43dd8848b4df4d6c98fcdc4, type: 3}
+    RequiredLevel: 2
+    CostType: 0
+    IncomeType: 0
+    Count:
+      value: 18
+    _maxCount: 0
+    _baseIncome:
+      _value: 10
+      _index: 0
+    _baseCost:
+      _value: 1
+      _index: 0
+    CanUpgrade:
+      value: 1
+  - Id: 1
+    Name: 
+    Icon: {fileID: 21300000, guid: 98052b730bb00cb47a12e0030bb3ded8, type: 3}
+    Grade: {fileID: 21300000, guid: 6f99c2375e80e22499269a941b15f914, type: 3}
+    RequiredLevel: 5
+    CostType: 0
+    IncomeType: 0
+    Count:
+      value: 15
+    _maxCount: 0
+    _baseIncome:
+      _value: 10
+      _index: 0
+    _baseCost:
+      _value: 1
+      _index: 0
+    CanUpgrade:
+      value: 1
+  - Id: 2
+    Name: 
+    Icon: {fileID: 21300000, guid: b50d6b7eca14ba54da8ef8c84b8b1581, type: 3}
+    Grade: {fileID: 21300000, guid: 1a72fab202c666e49ad34734581d49e5, type: 3}
+    RequiredLevel: 9
+    CostType: 1
+    IncomeType: 0
+    Count:
+      value: 7
+    _maxCount: 0
+    _baseIncome:
+      _value: 10
+      _index: 0
+    _baseCost:
+      _value: 1
+      _index: 0
+    CanUpgrade:
+      value: 1
+  - Id: 0
+    Name: 
+    Icon: {fileID: 0}
+    Grade: {fileID: 0}
+    RequiredLevel: 0
+    CostType: 0
+    IncomeType: 0
+    Count:
+      value: 0
+    _maxCount: 0
+    _baseIncome:
+      _value: 10
+      _index: 0
+    _baseCost:
+      _value: 1
+      _index: 0
+    CanUpgrade:
+      value: 0

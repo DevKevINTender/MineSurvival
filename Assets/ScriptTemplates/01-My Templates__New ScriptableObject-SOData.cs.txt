@@ -1,0 +1,9 @@
+using Newtonsoft.Json;
+using UnityEngine;
+#NOTRIM#
+[JsonObject(MemberSerialization.OptIn)]
+[CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "ScriptableObjects/#SCRIPTNAME#", order = 1)]
+public class #SCRIPTNAME# : ScriptableObject
+{
+	
+}

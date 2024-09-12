@@ -1,0 +1,20 @@
+using Zenject;
+#NOTRIM#
+public interface I#SCRIPTNAME# : IService
+{
+#NOTRIM#
+}
+#NOTRIM#
+public class #SCRIPTNAME# : I#SCRIPTNAME#
+{
+	[Inject]
+	public void Constructor()
+	{
+	#NOTRIM#
+	}
+	#NOTRIM#
+	public void ActivateService()
+	{       
+        #NOTRIM#
+	}
+}

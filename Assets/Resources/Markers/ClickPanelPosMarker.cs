@@ -1,0 +1,3 @@
+public class ClickPanelPosMarker : Marker
+{
+}
