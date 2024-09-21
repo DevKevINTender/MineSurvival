@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using Zenject;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "EnemyListData", menuName = "ScriptableObjects/EnemyListData", order = 1)]
 public class EnemyListData : ScriptableObject
@@ -12,8 +13,17 @@ public class EnemyListData : ScriptableObject
 [Serializable]
 public class EnemyData
 {
-    public int id;
+    public EnemyEnum name;
     public GameObject prefab;
+    public EnemyStatsData stats;
+}
+
+[Serializable]
+public class EnemyStatsData
+{
+    public int hp;
+    public int damage;
+    public float moveSpeed;
 }
 
 public class EnemyListDataManager
@@ -26,10 +36,16 @@ public class EnemyListDataManager
     {
         _storageService = storageService;
         EnemyListData = _storageService.GetSOByType<EnemyListData>();
-
     }
 
     public EnemyListData GetEnemyListData() => EnemyListData;
+
+    public EnemyData GetEnemyDataByName(EnemyEnum name) => EnemyListData.enemyDatas.FirstOrDefault(e => e.name == name);
+}
+
+public enum EnemyEnum
+{
+    Default
 }
 
 

@@ -24,9 +24,10 @@ public class SessionServiceInstaller : MonoInstaller
         Container.Bind<CoinGiftService>().AsSingle();
         Container.Bind<GemGiftService>().AsSingle();
         Container.Bind<TakeGiftScreenService>().AsSingle();
-        Container.Bind<EnemySpawnService>().AsSingle();
-        Container.Bind<SessionAllyUnitListService>().AsSingle();  
+        Container.Bind<EnemyStageService>().AsSingle();
+        Container.Bind<AllyUnitSlotArrayViewService>().AsSingle();
         //L2        
+        Container.Bind<SessionAllyUnitListService>().AsSingle();
         Container.Bind<GiftServiceManager>().AsSingle();
         //L3
         Container.Bind<DailyGiftScreenService>().AsSingle();

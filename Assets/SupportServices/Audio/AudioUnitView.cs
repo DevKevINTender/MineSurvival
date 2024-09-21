@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using UniRx;
 
-public class AudioUnitView : MonoBehaviour
+public class AudioUnitView : PoolingView
 {
     public Action DeactivateToPool;
 
@@ -42,15 +42,20 @@ public class AudioUnitView : MonoBehaviour
     {
         _audioSource.volume = value;
     }
+
+    public void ActivateViewFromPool()
+    {
+
+    }
 }
 
 public class AudioUnitViewService : IPoolingViewService
 {
-    [Inject] private IViewFabric _fabric;
-    [Inject] private IMarkerService _markerService;
     [Inject] private IEventService _eventService;
     [Inject] private IAudioDataManager _audioDataManager;
-	private AudioUnitView _audioUnitView;
+    [Inject] private IViewPoolService _viewPoolService;
+    private IViewPool _audioUnitViewPool;
+    private AudioUnitView _audioUnitView;
     private AudioUnitDataView _audioUnitDataView;
     private Action<IPoolingViewService> _onDeactivateAction;
 
@@ -59,7 +64,6 @@ public class AudioUnitViewService : IPoolingViewService
         _audioUnitDataView = audioUnitDataView;
         _audioUnitView.ActivateView(_audioUnitDataView);
         _eventService.ObserveEvent<OnChangeAudioValue>().Subscribe(ChangeAudioValue);
-
         ChangeAudioValue();
     }
 
@@ -89,12 +93,12 @@ public class AudioUnitViewService : IPoolingViewService
         _onDeactivateAction = action;
     }
 
-    public void ActivateServiceFromPool(Action<IPoolingViewService> action, Transform poolTarget)
+    public void ActivateServiceFromPool(Action<IPoolingViewService> action)
     {
         if (_audioUnitView == null)
         {
-            Vector3 spawnPos = poolTarget.position;
-            _audioUnitView = _fabric.Init<AudioUnitView>(spawnPos, poolTarget);
+            _audioUnitViewPool = _viewPoolService.GetPool<AudioUnitView>();
+            _audioUnitView = (AudioUnitView)_audioUnitViewPool.GetItem();
             _audioUnitView.DeactivateToPool = DeactivateServiceToPool;
         }
     }

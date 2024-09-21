@@ -8,6 +8,16 @@ public class OnContactComponent : MonoBehaviour
     public HashSet<Type> contactTypes = new();
     public Action hasContactAction;
 
+    public void ActivateComponent()
+    {
+
+    }
+
+    public void DeactivateComponent()
+    {
+        contactTypes.Clear();
+    }
+
     public void Add(Type type)
     {
         contactTypes.Add(type);

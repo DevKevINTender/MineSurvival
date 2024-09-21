@@ -12,22 +12,11 @@ public interface IAudioService: IService
 
 public class AudioService : IAudioService
 {
-    private IPoolsViewService _poolsViewService;
-    private IPoolViewService _audioUnitPoolViewService;
-    private IAudioDataManager _audioDataManager;
+    [Inject] private IAudioDataManager _audioDataManager;
+    [Inject] private IViewServicePoolService _poolsViewService;
+    private IViewServicePool _audioUnitPoolViewService;
 
 	private List<AudioUnitViewService> _activeAudioUnit = new();
-
-	[Inject]
-	public void Constructor
-	(
-		IAudioDataManager audioDataManager,
-		IPoolsViewService poolsViewService
-	)
-	{
-		_audioDataManager = audioDataManager;
-		_poolsViewService = poolsViewService;
-	}
 	
 	public void ActivateService()
 	{

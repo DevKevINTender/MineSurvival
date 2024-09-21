@@ -11,19 +11,20 @@ public class SessionStartState : IBaseState
     [Inject] private CoinPanelService _coinPanelService;
     [Inject] private TakeGiftScreenService _takeGiftScreenService;
     [Inject] private DailyGiftScreenService _dailyGiftScreenService;
-    [Inject] private EnemySpawnService _enemySpawnService;
-
+    [Inject] private EnemyStageService _enemyStageService;
+    [Inject] private AllyUnitSlotArrayViewService _allyUnitSlotArrayViewService;
     [Inject] private SessionAllyUnitListService _sessionAllyUnitService;
 
     public void Enter()
     {
         _sessionScreenService.ActivateService();
-        _shopPanelService.ActivateService();
-        _shopItemPoolService.ActivateService();
+        //_shopPanelService.ActivateService();
+        //_shopItemPoolService.ActivateService();
         //_coinPanelService.ActivateService();
-        _takeGiftScreenService.ActivateService();
-        _dailyGiftScreenService.ActivateService();
-        _enemySpawnService.ActivateService();
+        //_takeGiftScreenService.ActivateService();
+        //_dailyGiftScreenService.ActivateService();
+        _enemyStageService.ActivateService();
+        _allyUnitSlotArrayViewService.ActivateService();
         _sessionAllyUnitService.ActivateService();
     }
 

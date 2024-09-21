@@ -1,20 +1,24 @@
 ﻿using System;
 using UniRx;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class HpComponent: MonoBehaviour
+public interface IHpComponent
+{
+    public void TakeDamage(float damage);
+}
+
+public class HpComponent: MonoBehaviour, IHpComponent
 {
     public Action DieAction;
-    private ReactiveProperty<float> hp = new ReactiveProperty<float>();
+    private ReactiveProperty<float> _healthPoints = new ReactiveProperty<float>();
     public void ActivateComponent(float baseHp)
     {
-        hp.Value = baseHp;
+        _healthPoints.Value = baseHp;
     }
     public void TakeDamage(float damage)
     {
-        hp.Value -= damage;
-        if(hp.Value <= 0)
+        _healthPoints.Value -= damage;
+        if(_healthPoints.Value <= 0)
         {
             DieAction?.Invoke();
         }

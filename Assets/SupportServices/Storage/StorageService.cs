@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public interface ISOStorageService
 public interface IPrefabStorageService
 {
     public GameObject GetPrefabByType<T>();
+    public GameObject GetPrefabByType(Type type);
 }
 
 public class StorageService : IPrefabStorageService, ISOStorageService
@@ -55,6 +57,22 @@ public class StorageService : IPrefabStorageService, ISOStorageService
         return obj;
     }
 
+    public GameObject GetPrefabByType(Type type)
+    {
+        GameObject obj = null;
+
+        foreach (GameObject item in prefabs)
+        {
+            // Проверить, есть ли у игрового объекта компонент с заданным именем
+            Component targetComponent = item.GetComponent(type.Name);
+
+            if (targetComponent != null) obj = item;
+        }
+
+        if (obj == null) Debug.LogError($"Not found Prefabs with type {type.Name} in {_prefabPath}");
+        return obj;
+    }
+
     public T GetSOByType<T>() where T : ScriptableObject
     {
         T obj = null;
@@ -78,5 +96,6 @@ public class StorageService : IPrefabStorageService, ISOStorageService
         if (objs == null) Debug.LogError($"Not found ScriptableObjects with type {typeof(T).Name} in {_prefabPath}");
         return objs;
     }
+
 
 }

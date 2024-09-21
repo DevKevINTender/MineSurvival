@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Zenject;
 
 public class DefaultLevelDataManager
@@ -18,6 +19,11 @@ public class DefaultLevelDataManager
     public LevelData GetCurrentLevelData()
     {
         return DefaultLevelData.LevelList[DefaultLevelData.CurrentLevelId];
+    }
+
+    public List<EnemyStageData> GetEnemyStageDataList()
+    {
+        return DefaultLevelData.LevelList[DefaultLevelData.CurrentLevelId].EnemyStageList;
     }
 }
 

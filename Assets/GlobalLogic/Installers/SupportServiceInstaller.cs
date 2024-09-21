@@ -20,6 +20,7 @@ public class SupportServiceInstaller : MonoInstaller
         Container.Bind<IViewFabric>().To<ViewFabric>().AsSingle();
         Container.Bind<IServiceFabric>().To<ServiceFabric>().AsSingle();
 
-        Container.Bind<IPoolsViewService>().To<PoolsViewService>().AsSingle();
+        Container.Bind<IViewServicePoolService>().To<ViewServicePoolService>().AsSingle();
+        Container.Bind<IViewPoolService>().To<ViewPoolService>().AsSingle();
     }
 }

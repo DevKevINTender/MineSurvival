@@ -148,7 +148,7 @@ MonoBehaviour:
   - Type: 0
     Key: Prefabs
     Ordinal: 11
-    Priority: 2
+    Priority: 101
     IconType: 120
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}
@@ -664,7 +664,7 @@ MonoBehaviour:
   - Type: 0
     Key: Resources
     Ordinal: 54
-    Priority: 1
+    Priority: 100
     IconType: 10
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}
@@ -676,7 +676,7 @@ MonoBehaviour:
   - Type: 0
     Key: SO
     Ordinal: 55
-    Priority: 2
+    Priority: 101
     IconType: 50
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}
@@ -688,7 +688,7 @@ MonoBehaviour:
   - Type: 0
     Key: Sprites
     Ordinal: 56
-    Priority: 2
+    Priority: 101
     IconType: 80
     SmallIcon: {fileID: 0}
     LargeIcon: {fileID: 0}

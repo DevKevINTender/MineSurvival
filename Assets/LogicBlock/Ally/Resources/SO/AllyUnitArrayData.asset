@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0db9b6ff31fb035468156dcacde27efe, type: 3}
+  m_Name: AllyUnitArrayData
+  m_EditorClassIdentifier: 
+  sessionAllyUnitNameArray: 0100000003000000
+  allyUnitDataArray:
+  - name: 3
+    level: 1
+    prefabs:
+    - {fileID: 1482958796162012973, guid: b803c577e3b2e644db320312bacf95d8, type: 3}
+    - {fileID: 7964725699278474284, guid: ebedfebfd385a6f41abc38c198f2f74a, type: 3}
+    - {fileID: 7964725699278474284, guid: 9fd04dffa5226cc4982dea8a5d998883, type: 3}
+    - {fileID: 7964725699278474284, guid: 35882523849bbbc4f8eea3f5384cff74, type: 3}
+    unitIcon: {fileID: 21300000, guid: cdf08cc62ba81cb4e98d4da38a6b73ea, type: 3}
+    skillDuration: 5
+    skillRecovery: 10
+    basicRange: 0
+    stepRangeByLevel: 0
+    basicAttack: 0
+    stepAttackByLevel: 0
+    basicAttackRate: 0
+    stepAttackRateByLevel: 0
+  - name: 1
+    level: 1
+    prefabs:
+    - {fileID: 1957471431630014692, guid: bc1c2af767dc0e742b696360b50f3924, type: 3}
+    - {fileID: 1957471431630014692, guid: bc1c2af767dc0e742b696360b50f3924, type: 3}
+    - {fileID: 1957471431630014692, guid: bc1c2af767dc0e742b696360b50f3924, type: 3}
+    - {fileID: 1957471431630014692, guid: bc1c2af767dc0e742b696360b50f3924, type: 3}
+    unitIcon: {fileID: 21300000, guid: 6ccdc7b334325314187a642cd483c66b, type: 3}
+    skillDuration: 5
+    skillRecovery: 10
+    basicRange: 0
+    stepRangeByLevel: 0
+    basicAttack: 0
+    stepAttackByLevel: 0
+    basicAttackRate: 0
+    stepAttackRateByLevel: 0
