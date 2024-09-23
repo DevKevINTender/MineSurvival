@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 public class DefenseAllyUnitView : AllyUnitView
@@ -9,6 +10,10 @@ public class DefenseAllyUnitView : AllyUnitView
     [SerializeField] private TargetFinderComponent _targetFinderComponent;
     private ReactiveProperty<SkillStatus> _currentStatus;
     private AllyUnitData _skillData;
+    private SpriteRenderer _swordSprite;
+    private List<Sprite> _swordSpriteTierList = new();
+    private SpriteRenderer _shieldSprite;
+    private List<Sprite> _shieldSpriteTierList = new();
 
     public void ActivateView(ReactiveProperty<SkillStatus> status, AllyUnitData skillData)
     {

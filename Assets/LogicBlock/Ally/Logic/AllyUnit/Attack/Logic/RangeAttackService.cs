@@ -47,4 +47,9 @@ public class RangeAttackService
         RangeProjectileViewService bullet = (RangeProjectileViewService)_bulletPoolViewService.GetItem();
         bullet.ActivateService(_spawPos.position, _targetFinderComponent.CurrentTarget.transform.position, 10);
     }
+
+    public void DeactivateService()
+    {
+        _disposables.Dispose();
+    }
 }

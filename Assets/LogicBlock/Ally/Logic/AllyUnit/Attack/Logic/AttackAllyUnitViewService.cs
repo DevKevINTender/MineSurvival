@@ -4,31 +4,31 @@ public class AttackAllyUnitViewService : AllyUnitViewService
 {
     private TargetFinderComponent _targetFinderComponent;
     private HpComponent _hpComponent;
-    private AllyTakeDamageComponent _takeDamage;
-    private AttackAllyUnitView _soldierAllyUnitView;
-    private RangeAttackService _shootService;
+    private TakeDamageComponent _takeDamageComponent;
+    private AttackAllyUnitView _unitView;
+    private RangeAttackService _rangeAttackService;
 
     public override void ActivateService(AllyUnitData unitData)
     {
 
         base.ActivateService(unitData);
-        _soldierAllyUnitView = base._allyUnitView as AttackAllyUnitView;
-        _soldierAllyUnitView.ActivateView(_currentStatus, unitData);
+        _unitView = base._allyUnitView as AttackAllyUnitView;
+        _unitView.ActivateView(_currentStatus, unitData);
         
-        _targetFinderComponent = _soldierAllyUnitView.GetComponentInChildren<TargetFinderComponent>();
+        _targetFinderComponent = _unitView.GetComponentInChildren<TargetFinderComponent>();
         _targetFinderComponent.ActivateComponent(typeof(EnemyUnitView));
 
-        _hpComponent = _soldierAllyUnitView.GetComponentInChildren<HpComponent>();
-        _hpComponent.ActivateComponent(100);
+        _hpComponent = _unitView.GetComponentInChildren<HpComponent>();
+        _hpComponent.ActivateComponent(50);
         _hpComponent.DieAction += OnDieAction;
 
-        _takeDamage = _soldierAllyUnitView.GetComponentInChildren<AllyTakeDamageComponent>();
-        _takeDamage.ActivateComponent<EnemyDealDamageComponent>();
+        _takeDamageComponent = _unitView.GetComponentInChildren<TakeDamageComponent>();
+        _takeDamageComponent.ActivateComponent(DealDamageEnum.Enemy);
 
-        _shootService = _serviceFabric.InitMultiple<RangeAttackService>();
-        _shootService.ActivateService(_targetFinderComponent, _soldierAllyUnitView.gunBarrel);
-        _shootService.OnStartShootAction += _soldierAllyUnitView.StartShoot;
-        _shootService.OnStopShootAction += _soldierAllyUnitView.StopShoot;
+        _rangeAttackService = _serviceFabric.InitMultiple<RangeAttackService>();
+        _rangeAttackService.ActivateService(_targetFinderComponent, _unitView.gunBarrel);
+        _rangeAttackService.OnStartShootAction += _unitView.StartShoot;
+        _rangeAttackService.OnStopShootAction += _unitView.StopShoot;
 
 
         _currentStatus
@@ -51,14 +51,16 @@ public class AttackAllyUnitViewService : AllyUnitViewService
 
     public void OnDieAction()
     {
-        _soldierAllyUnitView.Disable();
+        DeactivateService();
     }
 
     public override void DeactivateService()
     {
-        _disposables.Dispose();
+        _unitView.Disable();
         _hpComponent.DieAction -= OnDieAction;
-        _shootService.OnStartShootAction -= _soldierAllyUnitView.StartShoot;
-        _shootService.OnStopShootAction -= _soldierAllyUnitView.StopShoot;
+        _rangeAttackService.OnStartShootAction -= _unitView.StartShoot;
+        _rangeAttackService.OnStopShootAction -= _unitView.StopShoot;
+        _rangeAttackService.DeactivateService();
+        _disposables.Dispose();
     }
 }

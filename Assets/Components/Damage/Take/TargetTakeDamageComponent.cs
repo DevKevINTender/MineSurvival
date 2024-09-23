@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class TakeDamageComponent: MonoBehaviour
+public class TargetTakeDamageComponent : MonoBehaviour
 {
     private IHpComponent _hpComponent;
     private DealDamageEnum _type;
@@ -14,9 +13,9 @@ public class TakeDamageComponent: MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.TryGetComponent(out DealDamageComponent comp))
+        if (collision.TryGetComponent(out TargetDealDamageComponent comp))
         {
-            if(comp.GetDealDamageType() == _type)
+            if (comp.GetDealDamageType() == _type && comp.GetTargetTransfrom() == transform)
             {
                 _hpComponent.TakeDamage(comp.GetDamageCount());
             }

@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "AllyUnitArrayData", menuName = "ScriptableObjects/AllyUnitArrayData", order = 1)]
@@ -17,33 +19,73 @@ public class AllyUnitArrayData : ScriptableObject
 public class AllyUnitData
 {
     [JsonIgnore]
-    public AllyUnitEnum name;
-    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-    public int level;
+    public AllyUnitEnum Name;
     [JsonIgnore]
-    public AllyUnitView[] prefabs = new AllyUnitView[4];
+    public AllyUnitView Prefab;
+    public AllyUnitAtributes UnitAtributes;
     [JsonIgnore]
-    public Sprite unitIcon;
+    public Sprite SkillUnitIcon;
     [JsonIgnore]
-    public float skillDuration = 5f;
+    public float SkillDuration = 5f;
     [JsonIgnore]
-    public float skillRecovery = 10f;
-
-    public float basicRange;
-    public float stepRangeByLevel;
-    public float currentRange { get => basicRange + level * stepRangeByLevel; }
-
-
-    public float basicAttack;
-    public float stepAttackByLevel;
-    public float currentAttack { get => basicAttack + level * stepAttackByLevel; }
-
-
-    public float basicAttackRate;
-    public float stepAttackRateByLevel;
-    public float currentAttackRate { get => basicAttackRate + level * stepAttackRateByLevel; }
+    public float SkillRecovery = 10f;
 }
 
+[Serializable]
+[JsonObject(MemberSerialization.OptIn)]
+public class AllyUnitAtributes
+{
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+    public ReactiveProperty<int> level = new(0);
+
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+    public ReactiveProperty<int> tier = new(1);
+
+    public AllyUnitCoreAtributeEnum MainAtribute;
+
+    [FoldoutGroup("Strength")]
+    public int basicStrength;
+    [FoldoutGroup("Strength")]
+    public int stepStrengthByLevel;
+    public float currentStrength => basicStrength + level.Value * stepStrengthByLevel;
+
+    [FoldoutGroup("Agility")]
+    public int basicAgility;
+    [FoldoutGroup("Agility")]
+    public int stepAgilityByLevel;
+    public float currentAgility { get => basicAgility + level.Value * stepAgilityByLevel; }
+
+    [FoldoutGroup("Intelligence")]
+    public int basicIntelligence;
+    [FoldoutGroup("Intelligence")]
+    public int stepIntelligencehByLevel;
+    public float currentIntelligence { get => basicIntelligence + level.Value * stepIntelligencehByLevel; }
+
+    public List<AllyUnitAtribute> allyUnitAtributeList;
+}
+
+[Serializable]
+public class AllyUnitAtribute
+{
+    public AllyUnitAtributeEnum name;
+    public AllyUnitCoreAtributeEnum coreAtribute;
+    public float basic;
+    public float stepByCoreAtribute;
+    public float GetCurrent(float coreAtribute) => basic + coreAtribute * stepByCoreAtribute;
+}
+
+public enum AllyUnitCoreAtributeEnum
+{
+    Strength,
+    Agility,
+    Intelligence
+}
+public enum AllyUnitAtributeEnum
+{
+    AttackRange,
+    HealthPoints,
+    ShieldPoints
+}
 
 public enum AllyUnitEnum
 {

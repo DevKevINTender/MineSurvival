@@ -24,7 +24,7 @@ public class AllyUnitDataManager
     {
         foreach (var item in _allyUnitArrayData.allyUnitDataArray)
         {
-            SaveLoader.LoadItem(ArrayKey + item.name, item);
+            SaveLoader.LoadItem(ArrayKey + item.Name, item);
         }
         SaveLoader.LoadItem(Key, _allyUnitArrayData);
     }
@@ -33,7 +33,7 @@ public class AllyUnitDataManager
     {
         foreach (var item in _allyUnitArrayData.allyUnitDataArray)
         {
-            SaveLoader.SaveItem(ArrayKey + item.name, item);
+            SaveLoader.SaveItem(ArrayKey + item.Name, item);
         }
         SaveLoader.SaveItem(Key, _allyUnitArrayData);
     }
@@ -41,7 +41,7 @@ public class AllyUnitDataManager
     public AllyUnitData[] GetAllyUnitDataArray()
     {
         AllyUnitData[] sessionAllyUnitDataArray = _allyUnitArrayData.allyUnitDataArray
-           .Where(a => _allyUnitArrayData.sessionAllyUnitNameArray.Contains(a.name))
+           .Where(a => _allyUnitArrayData.sessionAllyUnitNameArray.Contains(a.Name))
            .ToArray();
 
         return sessionAllyUnitDataArray;

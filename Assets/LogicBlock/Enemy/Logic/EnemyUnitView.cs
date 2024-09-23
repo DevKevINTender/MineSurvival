@@ -35,6 +35,7 @@ public class EnemyUnitViewService : PoolingViewService
     private EnemyUnitView _enemyView;
     private HpComponent _hpComponent;
     private TakeDamageComponent _takeDamageComponent;
+    private DealDamageComponent _dealDamageComponent;
     private Transform _spawnPos;
 
 
@@ -47,11 +48,14 @@ public class EnemyUnitViewService : PoolingViewService
         _enemyView.ActivateView(_spawnPos);
 
         _hpComponent = _enemyView.GetComponent<HpComponent>();
-        _hpComponent.ActivateComponent(100);
+        _hpComponent.ActivateComponent(1000);
         _hpComponent.DieAction += OnDieAction;
 
         _takeDamageComponent = _enemyView.GetComponent<TakeDamageComponent>();
-        _takeDamageComponent.ActivateComponent<AllyDealDamageComponent>();
+        _takeDamageComponent.ActivateComponent(DealDamageEnum.Ally);
+
+        _dealDamageComponent = _enemyView.GetComponent<DealDamageComponent>();
+        _dealDamageComponent.ActivateComponent(10, DealDamageEnum.Enemy);
     }
     
     public void DeactivateService()

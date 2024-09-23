@@ -21,7 +21,7 @@ public class RangeProjectileViewService : PoolingViewService
     [Inject] private IViewFabric _viewFabric;
     private RangeProjectileView _bulletView;
     private BulletComponent _bulletComponent;
-    private AllyDealDamageComponent _allyDealDamageComponent;
+    private DealDamageComponent _allyDealDamageComponent;
     private OnContactComponent _onContactComponent;
 
     public void ActivateService(Vector3 bulletSpawnPos, Vector3 target, float damage)
@@ -32,8 +32,8 @@ public class RangeProjectileViewService : PoolingViewService
         _bulletComponent = _bulletView.GetComponent<BulletComponent>();
         _bulletComponent.ActivateComponent(target - bulletSpawnPos);
 
-        _allyDealDamageComponent = _bulletView.GetComponent<AllyDealDamageComponent>();
-        _allyDealDamageComponent.ActivateComponent(damage);
+        _allyDealDamageComponent = _bulletView.GetComponent<DealDamageComponent>();
+        _allyDealDamageComponent.ActivateComponent(damage, DealDamageEnum.Ally);
 
         _onContactComponent = _bulletView.GetComponent<OnContactComponent>();
         _onContactComponent.Add(typeof(EnemyUnitView));

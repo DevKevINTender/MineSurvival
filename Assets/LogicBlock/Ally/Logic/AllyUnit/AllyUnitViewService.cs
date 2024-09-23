@@ -22,8 +22,8 @@ public class AllyUnitViewService
     public virtual void ActivateService(AllyUnitData unitData)
     {
         _skillData = unitData;
-        Transform viewPos = _slotArrayViewService.GetAllyUnitSlotTransformByName(_skillData.name);
-        _allyUnitView = _viewFabric.Init(_skillData.prefabs[_skillData.level-1], viewPos);
+        Transform viewPos = _slotArrayViewService.GetAllyUnitSlotTransformByName(_skillData.Name);
+        _allyUnitView = _viewFabric.Init(_skillData.Prefab, viewPos);
 
         _allySkillButtonService = _serviceFabric.InitMultiple<AllyUnitSkillButtonService>();
         _allySkillButtonService.ActivateService(unitData);

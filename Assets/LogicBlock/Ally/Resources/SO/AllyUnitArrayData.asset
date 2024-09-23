@@ -12,37 +12,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0db9b6ff31fb035468156dcacde27efe, type: 3}
   m_Name: AllyUnitArrayData
   m_EditorClassIdentifier: 
-  sessionAllyUnitNameArray: 0100000003000000
+  sessionAllyUnitNameArray: 01000000030000000300000003000000
   allyUnitDataArray:
-  - name: 3
-    level: 1
-    prefabs:
-    - {fileID: 1482958796162012973, guid: b803c577e3b2e644db320312bacf95d8, type: 3}
-    - {fileID: 7964725699278474284, guid: ebedfebfd385a6f41abc38c198f2f74a, type: 3}
-    - {fileID: 7964725699278474284, guid: 9fd04dffa5226cc4982dea8a5d998883, type: 3}
-    - {fileID: 7964725699278474284, guid: 35882523849bbbc4f8eea3f5384cff74, type: 3}
-    unitIcon: {fileID: 21300000, guid: cdf08cc62ba81cb4e98d4da38a6b73ea, type: 3}
-    skillDuration: 5
-    skillRecovery: 10
-    basicRange: 0
-    stepRangeByLevel: 0
-    basicAttack: 0
-    stepAttackByLevel: 0
-    basicAttackRate: 0
-    stepAttackRateByLevel: 0
-  - name: 1
-    level: 1
-    prefabs:
-    - {fileID: 1957471431630014692, guid: bc1c2af767dc0e742b696360b50f3924, type: 3}
-    - {fileID: 1957471431630014692, guid: bc1c2af767dc0e742b696360b50f3924, type: 3}
-    - {fileID: 1957471431630014692, guid: bc1c2af767dc0e742b696360b50f3924, type: 3}
-    - {fileID: 1957471431630014692, guid: bc1c2af767dc0e742b696360b50f3924, type: 3}
-    unitIcon: {fileID: 21300000, guid: 6ccdc7b334325314187a642cd483c66b, type: 3}
-    skillDuration: 5
-    skillRecovery: 10
-    basicRange: 0
-    stepRangeByLevel: 0
-    basicAttack: 0
-    stepAttackByLevel: 0
-    basicAttackRate: 0
-    stepAttackRateByLevel: 0
+  - Name: 1
+    Prefab: {fileID: 1957471431630014692, guid: bc1c2af767dc0e742b696360b50f3924, type: 3}
+    UnitAtributes:
+      level:
+        value: 0
+      tier:
+        value: 1
+      MainAtribute: 0
+      basicStrength: 2
+      stepStrengthByLevel: 2
+      basicAgility: 1
+      stepAgilityByLevel: 1
+      basicIntelligence: 1
+      stepIntelligencehByLevel: 1
+      allyUnitAtributeList:
+      - name: 1
+        coreAtribute: 0
+        basic: 25
+        stepByCoreAtribute: 25
+      - name: 0
+        coreAtribute: 0
+        basic: 0
+        stepByCoreAtribute: 0
+    SkillUnitIcon: {fileID: 21300000, guid: 6ccdc7b334325314187a642cd483c66b, type: 3}
+    SkillDuration: 5
+    SkillRecovery: 10
+  - Name: 3
+    Prefab: {fileID: 1482958796162012973, guid: b803c577e3b2e644db320312bacf95d8, type: 3}
+    UnitAtributes:
+      level:
+        value: 0
+      tier:
+        value: 1
+      MainAtribute: 0
+      basicStrength: 0
+      stepStrengthByLevel: 0
+      basicAgility: 0
+      stepAgilityByLevel: 0
+      basicIntelligence: 0
+      stepIntelligencehByLevel: 0
+      allyUnitAtributeList: []
+    SkillUnitIcon: {fileID: 21300000, guid: cdf08cc62ba81cb4e98d4da38a6b73ea, type: 3}
+    SkillDuration: 5
+    SkillRecovery: 10

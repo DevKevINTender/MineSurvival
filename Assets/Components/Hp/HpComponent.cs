@@ -18,6 +18,7 @@ public class HpComponent: MonoBehaviour, IHpComponent
     public void TakeDamage(float damage)
     {
         _healthPoints.Value -= damage;
+        Debug.Log(transform.name + " " + _healthPoints.Value);
         if(_healthPoints.Value <= 0)
         {
             DieAction?.Invoke();

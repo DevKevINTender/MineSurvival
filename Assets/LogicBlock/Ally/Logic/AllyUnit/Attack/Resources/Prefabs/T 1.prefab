@@ -244,7 +244,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentTarget: {fileID: 0}
-  targetPool: []
 --- !u!1 &3760990579754703528
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +544,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5571787170241468877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2660a10982df6f945b0a8630abfe627b, type: 3}
+  m_Script: {fileID: 11500000, guid: bc1b7ea401580a14ca3b447e221dec9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &229712031677613891

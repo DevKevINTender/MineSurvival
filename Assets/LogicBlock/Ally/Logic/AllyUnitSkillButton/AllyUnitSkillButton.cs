@@ -34,8 +34,8 @@ public class AllyUnitSkillButton: MonoBehaviour
         _unitData = unitData;
         _currentSkillRecovery = currentSkillRecovery;
         _currentSkillDuration = currentSkillDuration;
-        _levelImage.sprite = _levelList[unitData.level];
-        _iconImage.sprite = unitData.unitIcon;
+        _levelImage.sprite = _levelList[unitData.UnitAtributes.level.Value];
+        _iconImage.sprite = unitData.SkillUnitIcon;
         _iconImage.SetNativeSize();
         _activateSkill.onClick.AddListener(() => OnActivateSkillAction?.Invoke());
 
@@ -44,15 +44,15 @@ public class AllyUnitSkillButton: MonoBehaviour
         _currentSkillRecovery
             .Subscribe(x =>
             {
-                RecoveryFillAmount.fillAmount = _currentSkillRecovery.Value / _unitData.skillRecovery;
-                recoverySkillText.text = $"{_unitData.skillRecovery - _currentSkillRecovery.Value} сек";
+                RecoveryFillAmount.fillAmount = _currentSkillRecovery.Value / _unitData.SkillRecovery;
+                recoverySkillText.text = $"{_unitData.SkillRecovery - _currentSkillRecovery.Value} сек";
             })
             .AddTo(this);
 
         _currentSkillDuration
             .Subscribe(x =>
             {
-                durationSkillText.text = $"{_unitData.skillDuration - _currentSkillDuration.Value} сек";
+                durationSkillText.text = $"{_unitData.SkillDuration - _currentSkillDuration.Value} сек";
             })
             .AddTo(this);
 
@@ -116,7 +116,7 @@ public class AllyUnitSkillButtonService
 
         Observable.Timer(System.TimeSpan.Zero, System.TimeSpan.FromSeconds(1))
             .Select(x => (int)x)
-            .TakeWhile(x => x < _unitData.skillDuration)
+            .TakeWhile(x => x < _unitData.SkillDuration)
             .Subscribe(x =>
             {
                 _currentSkillDuration.Value = x;
@@ -133,7 +133,7 @@ public class AllyUnitSkillButtonService
         _currentStatus.Value = SkillStatus.Recovery;
         Observable.Timer(System.TimeSpan.Zero, System.TimeSpan.FromSeconds(1))
             .Select(x => (int)x)
-            .TakeWhile(x => x < _unitData.skillRecovery)
+            .TakeWhile(x => x < _unitData.SkillRecovery)
             .Subscribe(x =>
             {
                 _currentSkillRecovery.Value = x;

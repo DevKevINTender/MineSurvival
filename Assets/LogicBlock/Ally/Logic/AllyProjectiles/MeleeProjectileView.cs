@@ -33,15 +33,15 @@ public class MeleeProjectileViewService : PoolingViewService
 {
     [Inject] private IViewFabric _viewFabric;
     private MeleeProjectileView _view;
-    private AllyDealDamageComponent _allyDealDamageComponent;
+    private DealDamageComponent _allyDealDamageComponent;
     private CompositeDisposable _disposables = new();
     public void ActivateService(Vector3 bulletSpawnPos, float damage)
     {
         _view = _view != null ? _view : _viewFabric.Init<MeleeProjectileView>();
         _view.ActivateView(bulletSpawnPos);
 
-        _allyDealDamageComponent = _view.GetComponent<AllyDealDamageComponent>();
-        _allyDealDamageComponent.ActivateComponent(damage);
+        _allyDealDamageComponent = _view.GetComponent<DealDamageComponent>();
+        _allyDealDamageComponent.ActivateComponent(damage, DealDamageEnum.Ally);
 
         _view.OnDestroyAction += DeactivateService;
             

@@ -4,7 +4,7 @@ public class DefenseAllyUnitViewService : AllyUnitViewService
 {
     private TargetFinderComponent _targetFinderComponent;
     private ShieldHpComponent _hpComponent;
-    private AllyTakeDamageComponent _takeDamage;
+    private TakeDamageComponent _takeDamage;
     private DefenseAllyUnitView _unitView;
     private MeleeAtackService _attackService;
 
@@ -22,8 +22,8 @@ public class DefenseAllyUnitViewService : AllyUnitViewService
         _hpComponent.ActivateComponent(100, 250);
         _hpComponent.DieAction += OnDieAction;
 
-        _takeDamage = _unitView.GetComponentInChildren<AllyTakeDamageComponent>();
-        _takeDamage.ActivateComponent<EnemyDealDamageComponent>();
+        _takeDamage = _unitView.GetComponentInChildren<TakeDamageComponent>();
+        _takeDamage.ActivateComponent(DealDamageEnum.Enemy);
 
         _attackService = _serviceFabric.InitMultiple<MeleeAtackService>();
         _attackService.ActivateService(_targetFinderComponent, _unitView.transform);

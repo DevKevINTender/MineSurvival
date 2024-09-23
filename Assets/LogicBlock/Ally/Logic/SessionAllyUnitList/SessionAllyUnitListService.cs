@@ -20,7 +20,7 @@ public class SessionAllyUnitListService
         _sessionAllyUnitDataArray = _allyUnitDataManager.GetAllyUnitDataArray();
         foreach(AllyUnitData item in _sessionAllyUnitDataArray)
         {
-            AllyUnitViewService newUnitViewService = (AllyUnitViewService)_serviceFabric.InitMultiple(_keyValuePairs[item.name]);
+            AllyUnitViewService newUnitViewService = (AllyUnitViewService)_serviceFabric.InitMultiple(_keyValuePairs[item.Name]);
             newUnitViewService.ActivateService(item);
             _unitViewServiceList.Add(newUnitViewService);
         }

@@ -6,8 +6,8 @@ public class TargetFinderComponent: MonoBehaviour
 {
     public Action<Transform> OnFindNewTargetAction;
     public Transform CurrentTarget = null;
+    private List<Transform> targetPool = new();
     private Type _targetType;
-    public List<Transform> targetPool = new();
 
 
     public void ActivateComponent(Type targetType)
