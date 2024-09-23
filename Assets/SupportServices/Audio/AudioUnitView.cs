@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using UniRx;
 
-public class AudioUnitView : PoolingView
+public class AudioUnitView : MonoBehaviour
 {
     public Action DeactivateToPool;
 
@@ -54,7 +54,7 @@ public class AudioUnitViewService : IPoolingViewService
     [Inject] private IEventService _eventService;
     [Inject] private IAudioDataManager _audioDataManager;
     [Inject] private IViewPoolService _viewPoolService;
-    private IViewPool _audioUnitViewPool;
+    [Inject] private IViewFabric _viewFabric;
     private AudioUnitView _audioUnitView;
     private AudioUnitDataView _audioUnitDataView;
     private Action<IPoolingViewService> _onDeactivateAction;
@@ -97,8 +97,7 @@ public class AudioUnitViewService : IPoolingViewService
     {
         if (_audioUnitView == null)
         {
-            _audioUnitViewPool = _viewPoolService.GetPool<AudioUnitView>();
-            _audioUnitView = (AudioUnitView)_audioUnitViewPool.GetItem();
+            _audioUnitView = _viewFabric.Init<AudioUnitView>();
             _audioUnitView.DeactivateToPool = DeactivateServiceToPool;
         }
     }

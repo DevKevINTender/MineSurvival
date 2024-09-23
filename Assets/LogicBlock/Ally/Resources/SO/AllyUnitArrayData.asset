@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0db9b6ff31fb035468156dcacde27efe, type: 3}
   m_Name: AllyUnitArrayData
   m_EditorClassIdentifier: 
-  sessionAllyUnitNameArray: 01000000030000000300000003000000
+  sessionAllyUnitNameArray: 0100000003000000
   allyUnitDataArray:
   - Name: 1
     Prefab: {fileID: 1957471431630014692, guid: bc1c2af767dc0e742b696360b50f3924, type: 3}

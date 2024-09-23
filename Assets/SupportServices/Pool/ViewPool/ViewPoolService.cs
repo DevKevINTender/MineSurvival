@@ -1,29 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using UnityEngine;
 using Zenject;
 
 public interface IViewPoolService
 {
-    public IViewPool GetPool<T>(int count = 1) where T : IPoolingView;
+    public Transform GetPoolTransfrom();
 }
-
 
 public class ViewPoolService : IViewPoolService
 {
-    [Inject] private IServiceFabric _serviceFabric;
-    private Dictionary<Type, IViewPool> _pools = new();
+    [Inject] private IViewFabric _viewFabric;
+    private ViewPoolView _slotView;
 
-    public IViewPool GetPool<T>(int count = 1) where T : IPoolingView
+    public Transform GetPoolTransfrom()
     {
-        return _pools.TryGetValue(typeof(T), out var pool) ? pool : InitPool<T>();
+        if(_slotView == null)
+        {
+            _slotView = _viewFabric.Init<ViewPoolView>();
+        }
+        return _slotView.transform;
     }
 
-    private IViewPool InitPool<T>(int count = 1)
-    {
-        ViewPool newPool = _serviceFabric.InitMultiple<ViewPool>();
-        newPool.ActivatePool();
-        newPool.SpawPool<T>(count);
-        _pools.Add(typeof(T), newPool);
-        return newPool;
-    }
 }

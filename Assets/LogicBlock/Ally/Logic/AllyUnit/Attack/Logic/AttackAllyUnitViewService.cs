@@ -10,17 +10,16 @@ public class AttackAllyUnitViewService : AllyUnitViewService
 
     public override void ActivateService(AllyUnitData unitData)
     {
-
         base.ActivateService(unitData);
         _unitView = base._allyUnitView as AttackAllyUnitView;
         _unitView.ActivateView(_currentStatus, unitData);
         
         _targetFinderComponent = _unitView.GetComponentInChildren<TargetFinderComponent>();
-        _targetFinderComponent.ActivateComponent(typeof(EnemyUnitView));
+        _targetFinderComponent.ActivateComponent(typeof(EnemyTargetComponent));
 
         _hpComponent = _unitView.GetComponentInChildren<HpComponent>();
         _hpComponent.ActivateComponent(50);
-        _hpComponent.DieAction += OnDieAction;
+        _hpComponent.DieAction += DeactivateService;
 
         _takeDamageComponent = _unitView.GetComponentInChildren<TakeDamageComponent>();
         _takeDamageComponent.ActivateComponent(DealDamageEnum.Enemy);
@@ -49,18 +48,13 @@ public class AttackAllyUnitViewService : AllyUnitViewService
             .AddTo(_disposables);
     }
 
-    public void OnDieAction()
-    {
-        DeactivateService();
-    }
-
     public override void DeactivateService()
     {
-        _unitView.Disable();
-        _hpComponent.DieAction -= OnDieAction;
+        base.DeactivateService();
+        if (_unitView != null) _unitView.DeactivateView();
+        _hpComponent.DieAction -= DeactivateService;
         _rangeAttackService.OnStartShootAction -= _unitView.StartShoot;
         _rangeAttackService.OnStopShootAction -= _unitView.StopShoot;
         _rangeAttackService.DeactivateService();
-        _disposables.Dispose();
     }
 }

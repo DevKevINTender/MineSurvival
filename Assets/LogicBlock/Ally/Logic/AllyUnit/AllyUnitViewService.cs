@@ -7,7 +7,7 @@ public class AllyUnitView: MonoBehaviour
 
 }
 
-public class AllyUnitViewService
+public class AllyUnitViewService: ViewService
 {
     [Inject] protected IViewFabric _viewFabric;
     [Inject] protected IServiceFabric _serviceFabric;
@@ -21,6 +21,7 @@ public class AllyUnitViewService
 
     public virtual void ActivateService(AllyUnitData unitData)
     {
+        isActive = true;
         _skillData = unitData;
         Transform viewPos = _slotArrayViewService.GetAllyUnitSlotTransformByName(_skillData.Name);
         _allyUnitView = _viewFabric.Init(_skillData.Prefab, viewPos);
@@ -33,7 +34,14 @@ public class AllyUnitViewService
 
     public virtual void DeactivateService()
     {
+        isActive = false;
         _disposables.Dispose();
     }
+}
+
+public class ViewService
+{
+    protected bool isActive = false;
+    protected bool isAvailable = false;
 }
 

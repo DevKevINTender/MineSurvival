@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 public class TargetFinderComponent: MonoBehaviour
 {
     public Action<Transform> OnFindNewTargetAction;
-    public Transform CurrentTarget = null;
+    public ReactiveProperty<Transform> CurrentTarget = new();
     private List<Transform> targetPool = new();
     private Type _targetType;
 
@@ -17,7 +18,7 @@ public class TargetFinderComponent: MonoBehaviour
 
     public void Update()
     {
-        if(CurrentTarget == null)
+        if(CurrentTarget.Value == null)
         {
             float closestDistance = Mathf.Infinity;
 
@@ -28,13 +29,13 @@ public class TargetFinderComponent: MonoBehaviour
                 if (distance < closestDistance)
                 {
                     closestDistance = distance; // обновление ближайшего расстояния
-                    CurrentTarget = t; // обновление ближайшего трансформа
+                    CurrentTarget.Value = t; // обновление ближайшего трансформа
                 }
             }
         }
         else
         {
-            CurrentTarget = targetPool.Contains(CurrentTarget) ? CurrentTarget : null;
+            CurrentTarget.Value = targetPool.Contains(CurrentTarget.Value) ? CurrentTarget.Value : null;
         }
     }
 

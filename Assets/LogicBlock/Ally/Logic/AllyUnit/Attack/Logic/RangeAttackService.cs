@@ -29,7 +29,7 @@ public class RangeAttackService
             .Switch() // Переключаемся на новый поток интервалов при изменении интервала
             .Subscribe(_ =>
             {
-                if (_targetFinderComponent.CurrentTarget != null)
+                if (_targetFinderComponent.CurrentTarget.Value != null)
                 {
                     Shoot();
                     OnStartShootAction?.Invoke();
@@ -45,7 +45,7 @@ public class RangeAttackService
     {
         
         RangeProjectileViewService bullet = (RangeProjectileViewService)_bulletPoolViewService.GetItem();
-        bullet.ActivateService(_spawPos.position, _targetFinderComponent.CurrentTarget.transform.position, 10);
+        bullet.ActivateService(_spawPos.position, _targetFinderComponent.CurrentTarget.Value.transform.position, 10);
     }
 
     public void DeactivateService()

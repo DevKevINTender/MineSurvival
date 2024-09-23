@@ -1,5 +1,4 @@
-﻿using System;
-using UniRx;
+﻿using UniRx;
 using UnityEngine;
 
 public class AttackAllyUnitView: AllyUnitView
@@ -37,7 +36,7 @@ public class AttackAllyUnitView: AllyUnitView
     public void StartShoot()
     {
         _animator.SetBool("Shoot" , true);
-        gun.right = gun.transform.position - _targetFinderComponent.CurrentTarget.transform.position;
+        gun.right = gun.transform.position - _targetFinderComponent.CurrentTarget.Value.transform.position;
     }
 
     public void StopShoot()
@@ -46,12 +45,7 @@ public class AttackAllyUnitView: AllyUnitView
         gun.right = gun.transform.right;
     }
 
-    public void Enable()
-    {
-        gameObject.SetActive(true);
-    }
-
-    public void Disable()
+    public void DeactivateView()
     {
         gameObject.SetActive(false);
     }

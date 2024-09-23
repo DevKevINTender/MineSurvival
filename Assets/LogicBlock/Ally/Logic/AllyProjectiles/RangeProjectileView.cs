@@ -30,7 +30,7 @@ public class RangeProjectileViewService : PoolingViewService
         _bulletView.ActivateView(bulletSpawnPos);
 
         _bulletComponent = _bulletView.GetComponent<BulletComponent>();
-        _bulletComponent.ActivateComponent(target - bulletSpawnPos);
+        _bulletComponent.ActivateComponent(Vector3.Normalize(target - bulletSpawnPos) * 10);
 
         _allyDealDamageComponent = _bulletView.GetComponent<DealDamageComponent>();
         _allyDealDamageComponent.ActivateComponent(damage, DealDamageEnum.Ally);

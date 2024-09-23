@@ -29,7 +29,7 @@ public class MeleeAtackService
             .Switch() // Переключаемся на новый поток интервалов при изменении интервала
             .Subscribe(_ =>
             {
-                if (_targetFinderComponent.CurrentTarget != null)
+                if (_targetFinderComponent.CurrentTarget.Value != null)
                 {
                     Attack();
                     OnStartAttackAction?.Invoke();
@@ -44,7 +44,12 @@ public class MeleeAtackService
     private void Attack()
     {
 
-        MeleeProjectileViewService bullet = (MeleeProjectileViewService)_projectilePoolViewService.GetItem();
-        bullet.ActivateService(_spawPos.position, 10);
+        MeleeProjectileViewService projecttile = (MeleeProjectileViewService)_projectilePoolViewService.GetItem();
+        projecttile.ActivateService(_spawPos.position, 10);
+    }
+
+    public void DeactivateService()
+    {
+       _disposables.Dispose();
     }
 }

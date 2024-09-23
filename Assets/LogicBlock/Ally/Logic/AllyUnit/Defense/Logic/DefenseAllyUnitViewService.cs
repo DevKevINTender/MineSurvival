@@ -16,7 +16,7 @@ public class DefenseAllyUnitViewService : AllyUnitViewService
         _unitView.ActivateView(_currentStatus, unitData);
 
         _targetFinderComponent = _unitView.GetComponentInChildren<TargetFinderComponent>();
-        _targetFinderComponent.ActivateComponent(typeof(EnemyUnitView));
+        _targetFinderComponent.ActivateComponent(typeof(EnemyTargetComponent));
 
         _hpComponent = _unitView.GetComponentInChildren<ShieldHpComponent>();
         _hpComponent.ActivateComponent(100, 250);
@@ -51,11 +51,12 @@ public class DefenseAllyUnitViewService : AllyUnitViewService
 
     public void OnDieAction()
     {
-        _unitView.Disable();
+        DeactivateService();
     }
 
     public override void DeactivateService()
     {
+        if(_unitView != null) _unitView.Disable();
         _disposables.Dispose();
         _hpComponent.DieAction -= OnDieAction;
         _attackService.OnStartAttackAction -= _unitView.StartShoot;
