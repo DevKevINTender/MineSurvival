@@ -14,13 +14,19 @@ public class RangeAttackService
     private readonly ReactiveProperty<float> _intervalProperty = new ReactiveProperty<float>(0.1f);
     private CompositeDisposable _disposables = new();
     private Transform _spawPos;
+    private RangeProjectileView _projectilePrefab;
+    private DealDamageType _dealDamageType;
 
     public void ActivateService(
         TargetFinderComponent targetFinderComponent,
-        Transform spawPos)
+        Transform spawPos,
+        RangeProjectileView projectilePrefab,
+        DealDamageType dealDamageType)
     {
         _targetFinderComponent = targetFinderComponent;
         _spawPos = spawPos;
+        _projectilePrefab = projectilePrefab;
+        _dealDamageType = dealDamageType;
 
         _bulletPoolViewService = _poolsViewService.GetPool<RangeProjectileViewService>();
 
@@ -42,10 +48,14 @@ public class RangeAttackService
             .AddTo(_disposables);
     }
     private void Shoot()
-    {
-        
+    { 
         RangeProjectileViewService bullet = (RangeProjectileViewService)_bulletPoolViewService.GetItem();
-        bullet.ActivateService(_spawPos.position, _targetFinderComponent.CurrentTarget.Value.transform.position, 10);
+        bullet.ActivateService(
+            _spawPos.position,
+            _targetFinderComponent.CurrentTarget.Value,
+            10f,
+            _projectilePrefab,
+            _dealDamageType);
     }
 
     public void DeactivateService()

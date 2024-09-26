@@ -10,7 +10,7 @@ public interface ISOStorageService
 public interface IPrefabStorageService
 {
     public GameObject GetPrefabByType<T>();
-    public GameObject GetPrefabByType(Type type);
+    public GameObject GetPrefabByType(System.Type type);
 }
 
 public class StorageService : IPrefabStorageService, ISOStorageService
@@ -57,7 +57,7 @@ public class StorageService : IPrefabStorageService, ISOStorageService
         return obj;
     }
 
-    public GameObject GetPrefabByType(Type type)
+    public GameObject GetPrefabByType(System.Type type)
     {
         GameObject obj = null;
 

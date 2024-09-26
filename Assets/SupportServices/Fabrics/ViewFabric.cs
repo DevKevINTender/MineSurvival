@@ -10,7 +10,7 @@ public interface IViewFabric
     public T Init<T>(T pb, Transform parent = null) where T : MonoBehaviour;
     public T Init<T>(GameObject pb, Transform parent = null);
     public T Init<T>(GameObject pb, Vector3 position, Transform parent = null);
-    public Component Init(Type type, Transform parent = null);
+    public Component Init(System.Type type, Transform parent = null);
 }
 
 public class ViewFabric : IViewFabric
@@ -64,7 +64,7 @@ public class ViewFabric : IViewFabric
         return obj.GetComponent<T>();
     }
 
-    public Component Init(Type type, Transform parent = null)
+    public Component Init(System.Type type, Transform parent = null)
     {
         var obj = MonoBehaviour.Instantiate(_prefabsStorageService.GetPrefabByType(type), parent);
         return obj.GetComponent(type);

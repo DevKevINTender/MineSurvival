@@ -61,7 +61,7 @@ public static class SaveLoader
 
 public class CustomContractResolver : DefaultContractResolver
 {
-    protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
+    protected override IList<JsonProperty> CreateProperties(System.Type type, MemberSerialization memberSerialization)
     {
         IList<JsonProperty> properties = base.CreateProperties(type, memberSerialization);
 

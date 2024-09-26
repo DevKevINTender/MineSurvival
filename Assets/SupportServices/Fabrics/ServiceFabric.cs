@@ -4,7 +4,7 @@ public interface IServiceFabric
 {
     T InitSingle<T>() where T : class;
     public T InitMultiple<T>() where T : class;
-    public object InitMultiple(Type Type);
+    public object InitMultiple(System.Type Type);
 }
 
 public class ServiceFabric: IServiceFabric
@@ -31,7 +31,7 @@ public class ServiceFabric: IServiceFabric
 
     public T InitMultiple<T>() where T : class => _container.Instantiate<T>();
 
-    public object InitMultiple(Type type) => _container.Instantiate(type);
+    public object InitMultiple(System.Type type) => _container.Instantiate(type);
 
 
 }

@@ -12,12 +12,10 @@ public class MeleeProjectileView : MonoBehaviour
         transform.parent = null;
         gameObject.SetActive(true);
         transform.position = spawnPos;
-        StartCoroutine(DestroyDelay());
     }
 
-    private IEnumerator DestroyDelay()
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        yield return new WaitForSeconds(0.1f);
         OnDestroyAction?.Invoke();
     }
 
@@ -35,13 +33,13 @@ public class MeleeProjectileViewService : PoolingViewService
     private MeleeProjectileView _view;
     private DealDamageComponent _allyDealDamageComponent;
     private CompositeDisposable _disposables = new();
-    public void ActivateService(Vector3 bulletSpawnPos, float damage)
+    public void ActivateService(Vector3 projectileSpawnPos, float damage, DealDamageType type, MeleeProjectileView meleeProjectilePrefab)
     {
-        _view = _view != null ? _view : _viewFabric.Init<MeleeProjectileView>();
-        _view.ActivateView(bulletSpawnPos);
+        _view = _view != null ? _view : _viewFabric.Init(meleeProjectilePrefab);
+        _view.ActivateView(projectileSpawnPos);
 
         _allyDealDamageComponent = _view.GetComponent<DealDamageComponent>();
-        _allyDealDamageComponent.ActivateComponent(damage, DealDamageEnum.Ally);
+        _allyDealDamageComponent.ActivateComponent(damage, type);
 
         _view.OnDestroyAction += DeactivateService;
             

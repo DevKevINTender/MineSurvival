@@ -19,7 +19,7 @@ public class ViewServicePool : IViewServicePool
     private List<IPoolingViewService> _freeItems = new();
     private List<IPoolingViewService> _viewServices = new();
 	private int _objCount;
-    private Type _serviceType;
+    private System.Type _serviceType;
 
     public int GetViewServicesCount() => _viewServices.Count;
 

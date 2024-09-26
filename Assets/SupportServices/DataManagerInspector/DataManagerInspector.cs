@@ -8,11 +8,11 @@
     public class DataManagerInspector : OdinMenuEditorWindow
     {
 
-        private static Type[] typesToDisplay = TypeCache.GetTypesWithAttribute<ManageableDataAttribute>()
+        private static System.Type[] typesToDisplay = TypeCache.GetTypesWithAttribute<ManageableDataAttribute>()
                .OrderBy(m => m.Name)
                .ToArray();
 
-        private Type selectedType;
+        private System.Type selectedType;
 
         [MenuItem("Tools/Data Manager")]
         private static void OpenEditor() => GetWindow<DataManagerInspector>();

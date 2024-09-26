@@ -10,13 +10,14 @@ public interface IPoolingViewService
 public class PoolingViewService: IPoolingViewService
 {
     protected Transform viewPool;   
-    [Inject] private IMarkerService _markerService;
+    [Inject] private IViewPoolService _viewPoolService;
     private Action<IPoolingViewService> _deactivateAction;
+
 
     public void ActivateServiceFromPool(Action<IPoolingViewService> action)
     {
         _deactivateAction = action;
-        viewPool = _markerService.GetTransformMarker<ViewPoolMarker>();
+        viewPool = _viewPoolService.GetPoolTransfrom();
     }
 
     public void DeactivateServiceToPool()

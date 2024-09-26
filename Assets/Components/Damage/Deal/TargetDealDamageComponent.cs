@@ -1,24 +1,21 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class TargetDealDamageComponent : MonoBehaviour
 {
-    private DealDamageEnum _type;
+    private Type _type;
     private float _dealDamageCount;
     private Transform _target;
 
-    public void ActivateComponent(float dealDamageCount, Transform target)
-    {
-        _dealDamageCount = dealDamageCount;
-        _target = target;
-    }
-    public void ActivateComponent(float dealDamageCount, DealDamageEnum type)
+    public void ActivateComponent(float dealDamageCount, Type type, Transform target)
     {
         _dealDamageCount = dealDamageCount;
         _type = type;
+        _target = target;
     }
-    public float GetDamageCount() => _dealDamageCount;
-    public DealDamageEnum GetDealDamageType() => _type;
-    public Transform GetTargetTransfrom() => _target;
 
+    public float GetDamageCount() => _dealDamageCount;
+    public Type GetDealDamageType() => _type;
+    public Transform GetTargetTransfrom() => _target;
 }
 

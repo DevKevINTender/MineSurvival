@@ -3,66 +3,69 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class TargetFinderComponent: MonoBehaviour
+public class TargetFinderComponent : MonoBehaviour
 {
     public Action<Transform> OnFindNewTargetAction;
     public ReactiveProperty<Transform> CurrentTarget = new();
     private List<Transform> targetPool = new();
     private Type _targetType;
 
-
     public void ActivateComponent(Type targetType)
     {
         _targetType = targetType;
     }
 
-    public void Update()
+    private void Update()
     {
-        if(CurrentTarget.Value == null)
+        // Регулярно обновляем текущую цель
+        UpdateCurrentTarget();
+    }
+
+    private void UpdateCurrentTarget()
+    {
+        if (targetPool.Count == 0)
         {
-            float closestDistance = Mathf.Infinity;
+            CurrentTarget.Value = null;
+            return;
+        }
 
-            foreach (Transform t in targetPool)
+        Transform closestTarget = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (Transform t in targetPool)
+        {
+            float distance = Vector3.Distance(transform.position, t.position);
+            if (distance < closestDistance)
             {
-                float distance = Vector3.Distance(transform.position, t.position); // вычисление расстояния
-
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance; // обновление ближайшего расстояния
-                    CurrentTarget.Value = t; // обновление ближайшего трансформа
-                }
+                closestDistance = distance;
+                closestTarget = t;
             }
         }
-        else
+
+        // Обновляем CurrentTarget, если найдена новая ближайшая цель
+        if (closestTarget != CurrentTarget.Value)
         {
-            CurrentTarget.Value = targetPool.Contains(CurrentTarget.Value) ? CurrentTarget.Value : null;
+            CurrentTarget.Value = closestTarget;
+            OnFindNewTargetAction?.Invoke(closestTarget);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(_targetType != null)
+        if (_targetType != null && collision.TryGetComponent(_targetType, out var component))
         {
-            var component = collision.GetComponent(_targetType);
-
-            if (component is not null)
-            {
-                targetPool.Add(collision.transform);
-            }
-        }      
+            targetPool.Add(collision.transform);
+            // Проверяем, если это новая цель, чтобы сразу назначить ее
+            UpdateCurrentTarget();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (_targetType != null)
+        if (_targetType != null && collision.TryGetComponent(_targetType, out var component))
         {
-            var component = collision.GetComponent(_targetType);
-
-            if (component != null)
-            {
-                targetPool.Remove(collision.transform);
-            }
+            targetPool.Remove(collision.transform);
+            UpdateCurrentTarget(); // Обновляем текущую цель при выходе
         }
     }
 }
-

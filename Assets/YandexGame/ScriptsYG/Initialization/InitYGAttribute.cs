@@ -17,7 +17,7 @@ namespace YG
 
         public static void CallInitYG()
         {
-            Type type = typeof(YandexGame);
+            System.Type type = typeof(YandexGame);
             MethodInfo[] methods = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
 
             foreach (MethodInfo method in methods)
@@ -36,7 +36,7 @@ namespace YG
 
         public static void CallStartYG()
         {
-            Type type = typeof(YandexGame);
+            System.Type type = typeof(YandexGame);
             MethodInfo[] methods = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
 
             foreach (MethodInfo method in methods)

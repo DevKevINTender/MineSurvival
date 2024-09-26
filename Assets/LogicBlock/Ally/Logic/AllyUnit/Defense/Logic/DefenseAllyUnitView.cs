@@ -6,6 +6,7 @@ public class DefenseAllyUnitView : AllyUnitView
 {
     public Transform gun;
     public Transform gunBarrel;
+    public MeleeProjectileView MeleeProjectilePrefab;
     [SerializeField] private Animator _animator;
     [SerializeField] private TargetFinderComponent _targetFinderComponent;
     private ReactiveProperty<SkillStatus> _currentStatus;
@@ -46,6 +47,11 @@ public class DefenseAllyUnitView : AllyUnitView
     public void StopShoot()
     {
         _animator.SetBool("Attack", false);
+    }
+
+    public void TakeDamage()
+    {
+        _animator.Play("TakeDamage");
     }
 
     public void Enable()

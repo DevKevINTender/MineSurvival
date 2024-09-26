@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class OnContactComponent : MonoBehaviour
 {
-    public HashSet<Type> contactTypes = new();
+    public HashSet<System.Type> contactTypes = new();
     public Action hasContactAction;
 
     public void ActivateComponent()
@@ -18,7 +18,7 @@ public class OnContactComponent : MonoBehaviour
         contactTypes.Clear();
     }
 
-    public void Add(Type type)
+    public void Add(System.Type type)
     {
         contactTypes.Add(type);
     }
@@ -28,7 +28,6 @@ public class OnContactComponent : MonoBehaviour
         if (HasAnyComponentFromContactList(collision))
         {
             hasContactAction?.Invoke();
-            Debug.Log("BULLET");
         }
     }
 

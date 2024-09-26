@@ -4,9 +4,9 @@ using UnityEngine;
 public class TakeDamageComponent: MonoBehaviour
 {
     private IHpComponent _hpComponent;
-    private DealDamageEnum _type;
+    private DealDamageType _type;
 
-    public void ActivateComponent(DealDamageEnum type)
+    public void ActivateComponent(DealDamageType type)
     {
         TryGetComponent(out _hpComponent);
         _type = type;

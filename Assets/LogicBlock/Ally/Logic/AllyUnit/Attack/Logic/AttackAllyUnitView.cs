@@ -5,6 +5,7 @@ public class AttackAllyUnitView: AllyUnitView
 {
     public Transform gun;
     public Transform gunBarrel;
+    public RangeProjectileView RangeProjectileViewPrefab;
     [SerializeField] private Animator _animator;
     [SerializeField] private TargetFinderComponent _targetFinderComponent;
     private ReactiveProperty<SkillStatus> _currentStatus;
@@ -43,6 +44,11 @@ public class AttackAllyUnitView: AllyUnitView
     {
         _animator.SetBool("Shoot", false);
         gun.right = gun.transform.right;
+    }
+
+    public void TakeDamage()
+    {
+        _animator.Play("TakeDamage");
     }
 
     public void DeactivateView()

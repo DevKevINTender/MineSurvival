@@ -1,23 +1,38 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class DealDamageComponent: MonoBehaviour
+public class DealDamageComponent: MonoBehaviour, IDealDamageComponent
 {
-    private DealDamageEnum _type;
     private float _dealDamageCount;
+    private DealDamageType _dealDamageType;
 
-    public void ActivateComponent(float dealDamageCount, DealDamageEnum type)
+    public void ActivateComponent(float dealDamageCount, DealDamageType dealDamageType)
     {
         _dealDamageCount = dealDamageCount;
-        _type = type;
+        _dealDamageType = dealDamageType;
     }
     public float GetDamageCount() => _dealDamageCount;
-    public DealDamageEnum GetDealDamageType() => _type;
+    public DealDamageType GetDealDamageType() => _dealDamageType;
     
+    public void DeactivateComponent()
+    {
+
+    }
 }
 
-public enum DealDamageEnum
+public enum DealDamageType
 {
-    Ally,
-    Enemy
+    Enemy,
+    Ally
 }
 
+public enum DamageType
+{
+
+}
+
+public interface IDealDamageComponent
+{
+    public DealDamageType GetDealDamageType();
+    public float GetDamageCount();
+}

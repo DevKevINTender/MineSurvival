@@ -20,15 +20,15 @@ public class AttackAllyUnitViewService : AllyUnitViewService
         _hpComponent = _unitView.GetComponentInChildren<HpComponent>();
         _hpComponent.ActivateComponent(50);
         _hpComponent.DieAction += DeactivateService;
+        _hpComponent.TakeDamageAction += _unitView.TakeDamage;
 
         _takeDamageComponent = _unitView.GetComponentInChildren<TakeDamageComponent>();
-        _takeDamageComponent.ActivateComponent(DealDamageEnum.Enemy);
+        _takeDamageComponent.ActivateComponent(DealDamageType.Enemy);
 
         _rangeAttackService = _serviceFabric.InitMultiple<RangeAttackService>();
-        _rangeAttackService.ActivateService(_targetFinderComponent, _unitView.gunBarrel);
+        _rangeAttackService.ActivateService(_targetFinderComponent, _unitView.gunBarrel, _unitView.RangeProjectileViewPrefab, DealDamageType.Ally);
         _rangeAttackService.OnStartShootAction += _unitView.StartShoot;
         _rangeAttackService.OnStopShootAction += _unitView.StopShoot;
-
 
         _currentStatus
             .Subscribe(x =>
@@ -53,6 +53,7 @@ public class AttackAllyUnitViewService : AllyUnitViewService
         base.DeactivateService();
         if (_unitView != null) _unitView.DeactivateView();
         _hpComponent.DieAction -= DeactivateService;
+        _hpComponent.TakeDamageAction -= _unitView.TakeDamage;
         _rangeAttackService.OnStartShootAction -= _unitView.StartShoot;
         _rangeAttackService.OnStopShootAction -= _unitView.StopShoot;
         _rangeAttackService.DeactivateService();

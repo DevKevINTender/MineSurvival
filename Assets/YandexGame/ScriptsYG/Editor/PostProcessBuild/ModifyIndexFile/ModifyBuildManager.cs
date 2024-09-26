@@ -23,7 +23,7 @@ namespace YG.EditorScr.BuildModify
             string filePath = Path.Combine(buildPatch, "index.html");
             indexFile = File.ReadAllText(filePath);
 
-            Type type = typeof(ModifyBuildManager);
+            System.Type type = typeof(ModifyBuildManager);
             MethodInfo[] methods = type.GetMethods(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
 
             foreach (MethodInfo method in methods)

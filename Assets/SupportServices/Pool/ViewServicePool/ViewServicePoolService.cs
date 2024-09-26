@@ -10,7 +10,7 @@ public interface IViewServicePoolService
 public class ViewServicePoolService : IViewServicePoolService
 {
     [Inject] private IServiceFabric _serviceFabric;
-    private Dictionary<Type, IViewServicePool> _pools = new();
+    private Dictionary<System.Type, IViewServicePool> _pools = new();
 
     public IViewServicePool GetPool<T>(int count = 1) where T : IPoolingViewService
     {

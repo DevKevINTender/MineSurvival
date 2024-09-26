@@ -8,7 +8,7 @@ public class SessionAllyUnitListService
     [Inject] private AllyUnitDataManager _allyUnitDataManager;
     private List<AllyUnitViewService> _unitViewServiceList = new List<AllyUnitViewService>();
     private AllyUnitData[] _sessionAllyUnitDataArray;
-    private Dictionary<AllyUnitEnum, Type> _keyValuePairs = new Dictionary<AllyUnitEnum, Type>()
+    private Dictionary<AllyUnitEnum, System.Type> _keyValuePairs = new Dictionary<AllyUnitEnum, System.Type>()
     {
         { AllyUnitEnum.Fisher, typeof(DefenseAllyUnitViewService) },
         { AllyUnitEnum.Banatic, typeof(AllyUnitViewService) },

@@ -21,12 +21,13 @@ public class DefenseAllyUnitViewService : AllyUnitViewService
         _hpComponent = _unitView.GetComponentInChildren<ShieldHpComponent>();
         _hpComponent.ActivateComponent(100, 250);
         _hpComponent.DieAction += OnDieAction;
+        _hpComponent.TakeDamageAction += _unitView.TakeDamage;
 
         _takeDamage = _unitView.GetComponentInChildren<TakeDamageComponent>();
-        _takeDamage.ActivateComponent(DealDamageEnum.Enemy);
+        _takeDamage.ActivateComponent(DealDamageType.Enemy);
 
         _attackService = _serviceFabric.InitMultiple<MeleeAtackService>();
-        _attackService.ActivateService(_targetFinderComponent, _unitView.transform);
+        _attackService.ActivateService(_targetFinderComponent, _unitView.transform, DealDamageType.Ally, _unitView.MeleeProjectilePrefab);
         _attackService.OnStartAttackAction += _unitView.StartShoot;
         _attackService.OnStopAttacktAction += _unitView.StopShoot;
 
@@ -59,6 +60,7 @@ public class DefenseAllyUnitViewService : AllyUnitViewService
         if(_unitView != null) _unitView.Disable();
         _disposables.Dispose();
         _hpComponent.DieAction -= OnDieAction;
+        _hpComponent.TakeDamageAction -= _unitView.TakeDamage;
         _attackService.OnStartAttackAction -= _unitView.StartShoot;
         _attackService.OnStopAttacktAction -= _unitView.StopShoot;
     }

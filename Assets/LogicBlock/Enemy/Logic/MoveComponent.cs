@@ -9,6 +9,7 @@ public class MoveComponent: MonoBehaviour
 
     public void MoveToTarget(Transform target, float speed, float stopDistance)
     {
+        StopAllCoroutines();
         StartCoroutine(MoveToTargetCoroutine(target, speed, stopDistance));
     }
 
@@ -34,6 +35,11 @@ public class MoveComponent: MonoBehaviour
         {
             LooseTargetAcion?.Invoke();
         }
+    }
+
+    public void DeactivateComponent()
+    {
+        StopAllCoroutines();
     }
 }
 

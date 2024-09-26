@@ -7,7 +7,7 @@ using Sirenix.Utilities.Editor;
 
 public static class GUIUtils
 {
-    public static bool SelectButtonList(ref Type selectedType, Type[] typesToDisplay)
+    public static bool SelectButtonList(ref System.Type selectedType, System.Type[] typesToDisplay)
     {
         var rect = GUILayoutUtility.GetRect(0, 25);
 

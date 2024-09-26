@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class TargetTakeDamageComponent : MonoBehaviour
 {
     private IHpComponent _hpComponent;
-    private DealDamageEnum _type;
+    private Type _type;
 
-    public void ActivateComponent(DealDamageEnum type)
+    public void ActivateComponent(Type type)
     {
         TryGetComponent(out _hpComponent);
         _type = type;
