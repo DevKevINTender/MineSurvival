@@ -1,16 +1,18 @@
 ﻿using UniRx;
 using UnityEngine;
 
-public class AttackAllyUnitView: AllyUnitView
+public class SupportAllyUnitView : AllyUnitView
 {
-    public Transform gun;
-    public Transform gunBarrel;
-    public RangeProjectileView RangeProjectileViewPrefab;
+    public HealProjectileView HealProjectileViewPreafab;
     [SerializeField] private Animator _animator;
-    [SerializeField] private TargetFinderComponent _targetFinderComponent;
+    public HealTargetFinderComponent TargetFinderComponent;
+    public HpComponent HpComponent;
+    public TakeDamageComponent TakeDamageComponent;
+    public TakeHealComponent TakeHealComponent;
+
     private ReactiveProperty<SkillStatus> _currentStatus;
     private AllyUnitData _skillData;
-    public TakeHealComponent TakeHealComponent;
+
 
     public void ActivateView(ReactiveProperty<SkillStatus> status, AllyUnitData skillData)
     {
@@ -19,7 +21,7 @@ public class AttackAllyUnitView: AllyUnitView
         _currentStatus
            .Subscribe(x =>
            {
-               switch (x) 
+               switch (x)
                {
                    case SkillStatus.Active:
                        //дроп на поле и начать стрельбу
@@ -35,16 +37,14 @@ public class AttackAllyUnitView: AllyUnitView
            .AddTo(this);
     }
 
-    public void StartShoot()
+    public void StartHeal()
     {
-        _animator.SetBool("Shoot" , true);
-        gun.right = gun.transform.position - _targetFinderComponent.CurrentTarget.Value.transform.position;
+        _animator.SetBool("Heal", true);
     }
 
-    public void StopShoot()
+    public void StopHeal()
     {
-        _animator.SetBool("Shoot", false);
-        gun.right = gun.transform.right;
+        _animator.SetBool("Heal", false);
     }
 
     public void TakeDamage()
@@ -52,9 +52,13 @@ public class AttackAllyUnitView: AllyUnitView
         _animator.Play("TakeDamage");
     }
 
-    public void DeactivateView()
+    public void Enable()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void Disable()
     {
         gameObject.SetActive(false);
     }
 }
-

@@ -5,20 +5,25 @@ using UnityEngine;
 
 public class TargetFinderComponent : MonoBehaviour
 {
-    public Action<Transform> OnFindNewTargetAction;
     public ReactiveProperty<Transform> CurrentTarget = new();
     private List<Transform> targetPool = new();
     private Type _targetType;
-
+    private bool isActive = false;
     public void ActivateComponent(Type targetType)
     {
         _targetType = targetType;
+        isActive = true;
     }
 
     private void Update()
     {
-        // Регулярно обновляем текущую цель
-        UpdateCurrentTarget();
+       if(isActive) UpdateCurrentTarget();
+    }
+
+    public void DeactivateComponent()
+    {
+        isActive = false;
+
     }
 
     private void UpdateCurrentTarget()
@@ -46,7 +51,6 @@ public class TargetFinderComponent : MonoBehaviour
         if (closestTarget != CurrentTarget.Value)
         {
             CurrentTarget.Value = closestTarget;
-            OnFindNewTargetAction?.Invoke(closestTarget);
         }
     }
 

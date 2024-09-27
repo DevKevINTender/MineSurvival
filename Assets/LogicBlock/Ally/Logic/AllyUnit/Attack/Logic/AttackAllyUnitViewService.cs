@@ -22,6 +22,8 @@ public class AttackAllyUnitViewService : AllyUnitViewService
         _hpComponent.DieAction += DeactivateService;
         _hpComponent.TakeDamageAction += _unitView.TakeDamage;
 
+        _unitView.TakeHealComponent.ActivateComponent(DealHealType.Ally);
+
         _takeDamageComponent = _unitView.GetComponentInChildren<TakeDamageComponent>();
         _takeDamageComponent.ActivateComponent(DealDamageType.Enemy);
 
@@ -54,6 +56,7 @@ public class AttackAllyUnitViewService : AllyUnitViewService
         if (_unitView != null) _unitView.DeactivateView();
         _hpComponent.DieAction -= DeactivateService;
         _hpComponent.TakeDamageAction -= _unitView.TakeDamage;
+        _targetFinderComponent.DeactivateComponent();
         _rangeAttackService.OnStartShootAction -= _unitView.StartShoot;
         _rangeAttackService.OnStopShootAction -= _unitView.StopShoot;
         _rangeAttackService.DeactivateService();

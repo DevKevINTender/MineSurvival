@@ -86,6 +86,8 @@ public class EnemyUnitViewService : PoolingViewService
         _meleeAtackService.DeactivateService();
         _enemyView.hpComponent.DieAction -= DeactivateService;
         _enemyView.hpComponent.TakeDamageAction -= _enemyView.TakeDamage;
+        _enemyView.targetFinderComponentFoAttack.DeactivateComponent();
+        _enemyView.targetFinderComponentForMovement.DeactivateComponent();
         _enemyView.DiactivateView(viewPool);
         DeactivateServiceToPool();
     }

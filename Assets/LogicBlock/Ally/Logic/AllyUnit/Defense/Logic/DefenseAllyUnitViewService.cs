@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using System.Collections.Generic;
+using UniRx;
 
 public class DefenseAllyUnitViewService : AllyUnitViewService
 {
@@ -22,6 +23,9 @@ public class DefenseAllyUnitViewService : AllyUnitViewService
         _hpComponent.ActivateComponent(100, 250);
         _hpComponent.DieAction += OnDieAction;
         _hpComponent.TakeDamageAction += _unitView.TakeDamage;
+
+        _unitView.TakeHealComponent.ActivateComponent(DealHealType.Ally);
+
 
         _takeDamage = _unitView.GetComponentInChildren<TakeDamageComponent>();
         _takeDamage.ActivateComponent(DealDamageType.Enemy);
@@ -61,6 +65,7 @@ public class DefenseAllyUnitViewService : AllyUnitViewService
         _disposables.Dispose();
         _hpComponent.DieAction -= OnDieAction;
         _hpComponent.TakeDamageAction -= _unitView.TakeDamage;
+        _targetFinderComponent.DeactivateComponent();
         _attackService.OnStartAttackAction -= _unitView.StartShoot;
         _attackService.OnStopAttacktAction -= _unitView.StopShoot;
     }

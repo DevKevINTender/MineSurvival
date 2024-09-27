@@ -11,7 +11,7 @@ public class SessionAllyUnitListService
     private Dictionary<AllyUnitEnum, System.Type> _keyValuePairs = new Dictionary<AllyUnitEnum, System.Type>()
     {
         { AllyUnitEnum.Fisher, typeof(DefenseAllyUnitViewService) },
-        { AllyUnitEnum.Banatic, typeof(AllyUnitViewService) },
+        { AllyUnitEnum.Banatic, typeof(SupportAllyUnitViewService) },
         { AllyUnitEnum.Ice, typeof(AttackAllyUnitViewService) }
     };
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0db9b6ff31fb035468156dcacde27efe, type: 3}
   m_Name: AllyUnitArrayData
   m_EditorClassIdentifier: 
-  sessionAllyUnitNameArray: 0300000001000000
+  sessionAllyUnitNameArray: 010000000300000000000000
   allyUnitDataArray:
   - Name: 1
     Prefab: {fileID: 1957471431630014692, guid: bc1c2af767dc0e742b696360b50f3924, type: 3}
@@ -56,5 +56,23 @@ MonoBehaviour:
       stepIntelligencehByLevel: 0
       allyUnitAtributeList: []
     SkillUnitIcon: {fileID: 21300000, guid: cdf08cc62ba81cb4e98d4da38a6b73ea, type: 3}
+    SkillDuration: 5
+    SkillRecovery: 10
+  - Name: 0
+    Prefab: {fileID: 8959473954868340223, guid: 7beef5c4d770f6f479ed3d426cdfa5d6, type: 3}
+    UnitAtributes:
+      level:
+        value: 0
+      tier:
+        value: 1
+      MainAtribute: 0
+      basicStrength: 0
+      stepStrengthByLevel: 0
+      basicAgility: 0
+      stepAgilityByLevel: 0
+      basicIntelligence: 0
+      stepIntelligencehByLevel: 0
+      allyUnitAtributeList: []
+    SkillUnitIcon: {fileID: 0}
     SkillDuration: 5
     SkillRecovery: 10

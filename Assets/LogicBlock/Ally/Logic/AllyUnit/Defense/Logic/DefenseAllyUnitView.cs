@@ -15,7 +15,7 @@ public class DefenseAllyUnitView : AllyUnitView
     private List<Sprite> _swordSpriteTierList = new();
     private SpriteRenderer _shieldSprite;
     private List<Sprite> _shieldSpriteTierList = new();
-
+    public TakeHealComponent TakeHealComponent;
     public void ActivateView(ReactiveProperty<SkillStatus> status, AllyUnitData skillData)
     {
         _skillData = skillData;
